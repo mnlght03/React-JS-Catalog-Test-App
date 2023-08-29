@@ -31,7 +31,7 @@ export default function Pagination({
   return (
     <div className="pagination">
       <ChevronDownSvg
-        className="pagination__left-arrow"
+        className={`pagination__left-arrow ${ fraction !== 0 ? 'svg-stroke-blue' : ''}`}
         onClick={() => {
           setCurrent(currentPage - 1);
           if (fraction > 0 && currentPage - 1 < fraction * pagesVisible) setFraction(fraction - 1);
@@ -40,7 +40,7 @@ export default function Pagination({
       <div className="pagination__buttons-wrapper">
         {fraction !== 0 && (
           <div
-            className={`pagination__button `}
+            className={`pagination__button mobile-hidden`}
             onClick={() => {
               setFraction(fraction - 1);
               setCurrent(fraction * pagesVisible - 1);
@@ -64,7 +64,7 @@ export default function Pagination({
         )}
         {fraction !== Math.ceil(totalPages / pagesVisible) - 1 && (
           <div
-            className={`pagination__button `}
+            className={`pagination__button mobile-hidden`}
             onClick={() => {
               setFraction(fraction + 1);
               setCurrent((fraction + 1) * pagesVisible)
@@ -75,10 +75,10 @@ export default function Pagination({
         )}
       </div>
       <ChevronDownSvg
-        className="pagination__right-arrow"
+        className={`pagination__right-arrow ${ fraction !== Math.ceil(totalPages / pagesVisible) - 1 ? 'svg-stroke-blue' : 0}`}
         onClick={() => {
           setCurrent(currentPage + 1);
-          if (currentPage + 1 >= (fraction + 1) * pagesVisible) setFraction(fraction + 1);
+          if (fraction < Math.ceil(totalPages / pagesVisible) - 1 && currentPage + 1 >= (fraction + 1) * pagesVisible) setFraction(fraction + 1);
         }}
       />
     </div>

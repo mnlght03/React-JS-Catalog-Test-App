@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import CatalogService from './CatalogService';
 
 import './Catalog.css';
 import { Filters, ProductsList } from '.';
 import { CheckboxInput, DropDownButton, Pagination, SliderInput } from '../ui';
 import CatalogHeader from './CatalogHeader';
-import { IProduct, IProductMap, ISection } from '../../types';
+import { IProductMap, ISection } from '../../types';
 import {
   useCatalogSetup,
   usePageProducts,
@@ -37,6 +36,8 @@ export default function Catalog({ itemsPerPage = 6 }: CatalogProps) {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
 
+  const [isFilterMobileVisible, setIsFilterMobileVisible] = useState(false);
+
   const [throttleTimeout, setThrottleTimeout] = useState(0);
 
   const [sortingSchema, setSortingSchema] = useState({} as ISortingSchema);
@@ -44,9 +45,6 @@ export default function Catalog({ itemsPerPage = 6 }: CatalogProps) {
   const updatePrices = (min: number, max: number) => {
     setMinPrice(min);
     setMaxPrice(max);
-    // let sortingMin = sortingSchema.minPrice > min ? sortingSchema.minPrice : min;
-    // let sortingMax = sortingSchema.maxPrice < max ? sortingSchema.maxPrice : max;
-    // setSortingSchema({...sortingSchema, minPrice: sortingMin, maxPrice: sortingMax});
   };
 
   const selectedProducts = useSortedAndFilteredProducts(
@@ -59,7 +57,7 @@ export default function Catalog({ itemsPerPage = 6 }: CatalogProps) {
     selectedProducts,
     sortingSchema.page,
     itemsPerPage,
-    (page: number) => setSortingSchema({...sortingSchema, page: page})
+    (page: number) => setSortingSchema({ ...sortingSchema, page: page })
   );
 
   useCatalogSetup(
@@ -78,15 +76,12 @@ export default function Catalog({ itemsPerPage = 6 }: CatalogProps) {
 
   return (
     <div className="catalog-section">
-      <div className="links-list">
-        <a href="#">Главная /</a>
-        <a href="#">Полы /</a>
-        <a href="#">Ламинат</a>
-      </div>
-
       <CatalogHeader title={'Каталог'} itemsCount={selectedProducts.length} />
       <div className="filter-and-cards-wrapper">
-        <Filters>
+        <Filters
+          mobileHidden={!isFilterMobileVisible}
+          callbackFn={() => setIsFilterMobileVisible(false)}
+        >
           {(minPrice !== 0 || maxPrice !== 0) && (
             <FilterItem name={'Цена'}>
               <SliderInput
@@ -134,6 +129,13 @@ export default function Catalog({ itemsPerPage = 6 }: CatalogProps) {
 
         <div className="cards-wrapper">
           <div className="cards-wrapper__header">
+            <div
+              id="filter-button-mobile"
+              className="mobile-visible"
+              onClick={() => setIsFilterMobileVisible(true)}
+            >
+              <span></span> Фильтры
+            </div>
             <DropDownButton
               setOptionFn={(option: SortingOptions) => {
                 setSortingSchema({ ...sortingSchema, sortingOption: option });
@@ -147,6 +149,7 @@ export default function Catalog({ itemsPerPage = 6 }: CatalogProps) {
           <Pagination
             page={sortingSchema.page}
             totalPages={Math.ceil(selectedProducts.length / itemsPerPage)}
+            pagesVisible={4}
             setPageFn={(page: number) => {
               setSortingSchema({ ...sortingSchema, page: page });
             }}
