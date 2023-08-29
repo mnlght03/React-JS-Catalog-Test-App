@@ -1,0 +1,85 @@
+:root {
+  --light-grey: #f2f6f9;
+  --dark-grey: #9eafbb;
+  --divider-grey: #cbd4da;
+  --shadow-black: #0000005e;
+  --red: #f94464;
+  --blue: #0f8feb;
+  --dark-blue: #0d81d3;
+  --light-blue: rgba(15, 143, 235, 0.2);
+  --green: #0add9e;
+  --popup-black: #1f1f1f;
+  --border-radius: 5px;
+  --big-border-radius: 20px;
+  --form-border-radius: 10px;
+  --page-padding-s: 2rem 10%;
+  --page-padding-m: 2rem 13%;
+  --page-padding-l: 2rem 20%;
+  --mobile-padding-s: 2rem;
+  --mobile-padding-xs: 1rem;
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  height: 100%;
+  width: 100%;
+}
+* {
+  box-sizing: border-box;
+  font-family: Montserrat, sans-serif;
+}
+::-webkit-scrollbar {
+  background-color: var(--light-grey);
+  border-radius: var(--border-radius);
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--blue);
+  border-radius: var(--border-radius);
+}
+@media screen and (max-width: 950px) {
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+input {
+  font-size: 1rem;
+}
+input[type='submit'] {
+  height: 3rem;
+}
+h1,
+h2,
+h3 {
+  font-weight: 600;
+}
+@media screen and (min-width: 1251px) and (max-width: 1700px) {
+  body,
+  html {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 1250px) {
+  body,
+  html {
+    font-size: 12px;
+  }
+}
+header {
+  margin: 0;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: var(--light-grey);
+  box-shadow: 0 1px 3px var(--shadow-black);
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
