@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CheckWhiteSvg } from './icons';
 
 export interface CheckboxInputProps {

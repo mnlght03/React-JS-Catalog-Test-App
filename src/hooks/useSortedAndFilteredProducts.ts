@@ -31,10 +31,10 @@ const useSortedAndFilteredProducts =  (productsMap: IProductMap, schema: ISortin
     switch(sortingOption) {
       case SortingOptions.ByPriceAsc:
         min = products[0].price;
-        max = products.at(-1)?.price || products[0].price;
+        max = products[products.length - 1]?.price || products[0].price;
         break;
       case SortingOptions.ByPriceDesc:
-        min = products.at(-1)?.price || products[0].price;
+        min = products[products.length - 1]?.price || products[0].price;
         max = products[0].price;
         break;
       case SortingOptions.ByTitle:

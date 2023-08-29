@@ -1,4 +1,3 @@
-import React from 'react';
 import { PlusSvg } from '../ui/icons';
 import { IProduct } from '../../types';
 import ProductCardParameters from './ProductCardParameters';

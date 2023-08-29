@@ -24,7 +24,7 @@ const useCatalogSetup = (
       );
 
       const minPrice = Number(sortedProducts[0].price);
-      const maxPrice = Number(sortedProducts.at(-1)?.price || sortedProducts[0].price);
+      const maxPrice = Number(sortedProducts[sortedProducts.length - 1]?.price || sortedProducts[0].price);
 
       setMinPrice(minPrice);
       setMaxPrice(maxPrice);
