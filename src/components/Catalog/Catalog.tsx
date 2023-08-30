@@ -89,8 +89,8 @@ export default function Catalog({ itemsPerPage = 6 }: CatalogProps) {
                 maxValue={maxPrice}
                 initLeftValue={sortingSchema.minPrice}
                 initRightValue={sortingSchema.maxPrice}
-                step={50}
-                minValueDifference={100}
+                step={1}
+                minValueDifference={200}
                 callbackFn={(left: number, right: number) =>
                   throttleCallback(
                     () =>

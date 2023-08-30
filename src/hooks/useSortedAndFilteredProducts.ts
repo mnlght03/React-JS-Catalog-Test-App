@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { IProduct, IProductMap, ISection } from '../types';
-import { ISortingSchema, SortingOptions } from '../components/Catalog/Catalog';
+import { IProduct, IProductMap } from '../types';
+import { ISortingSchema } from '../components/Catalog/Catalog';
 import CatalogService from '../components/Catalog/CatalogService';
 
 const useSortedAndFilteredProducts = (

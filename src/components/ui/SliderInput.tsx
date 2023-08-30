@@ -15,8 +15,8 @@ export default function SliderInput({
   maxValue,
   initLeftValue = undefined,
   initRightValue = undefined,
-  step = 0.1,
-  minValueDifference = 0.5,
+  step = 1,
+  minValueDifference = 1,
   callbackFn,
 }: SliderInputProps) {
   const [leftValue, setLeftValueState] = useState(initLeftValue || minValue);
