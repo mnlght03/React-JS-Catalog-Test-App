@@ -17,7 +17,7 @@ const useCatalogSetup = (
       setSections(sections);
       setProductsMap(productsMap);
 
-      const products = CatalogService.getSectionsProducts(sections, productsMap);
+      const products = CatalogService.getProductsBySections(sections, productsMap);
       const sortedProducts = CatalogService.getSortedProducts(
         products,
         SortingOptions.ByPriceAsc

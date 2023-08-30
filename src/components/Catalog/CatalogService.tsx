@@ -28,9 +28,9 @@ export default class CatalogService {
     return res.data.sections;
   }
 
-  static getSectionsProducts(sections: ISection[], productsMap: IProductMap) {
+  static getProductsBySections(sections: ISection[], productsMap: IProductMap) {
     return sections.flatMap((section) => section.items.map((item) => productsMap[item]));
-  };
+  }
 
   static getSortedProducts(products: IProduct[], option: SortingOptions) {
     switch (option) {
@@ -43,5 +43,35 @@ export default class CatalogService {
           a.title == b.title ? 0 : a.title < b.title ? -1 : 1
         );
     }
-  };
+  }
+
+  static getPricesFromSortedProducts(
+    products: IProduct[],
+    sortingOption: SortingOptions,
+    callbackFn: Function
+  ) {
+    if (products.length === 0) {
+      callbackFn(0, 0);
+      return [0, 0];
+    }
+
+    let min, max;
+    switch (sortingOption) {
+      case SortingOptions.ByPriceAsc:
+        min = products[0].price;
+        max = products[products.length - 1]?.price || products[0].price;
+        break;
+      case SortingOptions.ByPriceDesc:
+        min = products[products.length - 1]?.price || products[0].price;
+        max = products[0].price;
+        break;
+      case SortingOptions.ByTitle:
+        const prices = products.map((product) => product.price);
+        min = prices.reduce((a, b) => Math.min(a, b));
+        max = prices.reduce((a, b) => Math.max(a, b));
+        break;
+    }
+    callbackFn(min, max);
+    return [min, max];
+  }
 }
