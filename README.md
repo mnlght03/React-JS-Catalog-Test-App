@@ -2,6 +2,7 @@
 
 ## Description
 This is a React test task implemented with typescript and vite-pwa-plugin
+Styles and classNames were taken from another project to concentrate fully on React and PWA functionality
 
 ## Covered functionality
 
