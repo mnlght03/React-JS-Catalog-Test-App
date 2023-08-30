@@ -8,7 +8,7 @@ export default function ProductCardParameters({
   return (
     <div className="card__parameters-wrapper">
       {Object.entries(parameters).map(([key, value]) => (
-        <div className="card-parameter">
+        <div key={key} className="card-parameter">
           <p className="card__parameters__name">{key}</p>
           <p className="card__parameters__value">{value}</p>
         </div>

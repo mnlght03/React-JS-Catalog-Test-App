@@ -5,7 +5,11 @@ import ProductCardParameters from './ProductCardParameters';
 export default function ProductCard(product: IProduct) {
   return (
     <a href="#" className="card">
-      <img className="card__img" src={import.meta.env.VITE_API_BASE + product.src} />
+      <img
+        className="card__img"
+        alt="product image"
+        src={import.meta.env.VITE_API_BASE + product.src}
+      />
       <p className="card__name">{product.title}</p>
       {/* <div className="card__discount"> СКИДКА 10% </div> */}
       <ProductCardParameters

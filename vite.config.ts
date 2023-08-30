@@ -23,6 +23,7 @@ const pwaOptions: Partial<VitePWAOptions> = {
         src: 'logo192.png',
         type: 'image/png',
         sizes: '192x192',
+        purpose: 'maskable'
       },
       {
         src: 'logo512.png',
