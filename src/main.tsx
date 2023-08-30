@@ -4,7 +4,7 @@ import App from './App.tsx';
 import { registerSW } from 'virtual:pwa-register';
 
 if ('serviceWorker' in navigator) {
-  registerSW({ immediate: true });
+  registerSW();
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
